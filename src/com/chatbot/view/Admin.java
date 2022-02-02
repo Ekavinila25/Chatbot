@@ -1,32 +1,30 @@
 package com.chatbot.view;
 
-import java.sql.SQLException;
-
 import com.chatbot.controller.ChatBotController;
 
 public class Admin {
-	final ChatBotController CHATBOTCONTROLLER = new ChatBotController();
+	private final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
 
-	public void signUp() throws ClassNotFoundException, SQLException {
+	public void signUp() {
 		System.out.println("Enter The EmailId");
-		String emailId = Validation.emailIdValidation(MainClass.SCANNER.next());
+		String emailId = Validation.emailIdValidation(ChatBot.SCANNER.next());
 
 		System.out.println("Enter The Username");
-		String userName = Validation.userNameValidation(MainClass.SCANNER.next());
+		String userName = Validation.userNameValidation(ChatBot.SCANNER.next());
 
 		System.out.println("Enter The Password");
-		String password = Validation.passwordValidation(MainClass.SCANNER.next());
+		String password = Validation.passwordValidation(ChatBot.SCANNER.next());
 
-		CHATBOTCONTROLLER.adminSignUp(emailId, userName, password);
+		CHATBOT_CONTROLLER.adminSignUp(emailId, userName, password);
 	}
 
-	public void signIn() throws ClassNotFoundException, SQLException {
+	public void signIn() {
 		System.out.println("Enter The Username");
-		String userName = MainClass.SCANNER.next();
+		String userName = ChatBot.SCANNER.next();
 
 		System.out.println("Enter The Password");
-		String password = MainClass.SCANNER.next();
+		String password = ChatBot.SCANNER.next();
 
-		CHATBOTCONTROLLER.adminSignIn(userName, password);
+		CHATBOT_CONTROLLER.adminSignIn(userName, password);
 	}
 }

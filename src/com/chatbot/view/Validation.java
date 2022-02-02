@@ -4,20 +4,21 @@ public class Validation {
 
 	public static String emailIdValidation(String emailId) {
 
-		if ((!emailId.matches("^[A-Za-z0-9+_.-]+@(.+)$"))) {
+		if (!emailId.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
 			System.out.println("Please Enter Valid Email Id:");
-			emailId = MainClass.SCANNER.next();
+			emailId = ChatBot.SCANNER.next();
 
 			emailIdValidation(emailId);
+			
 		}
 		return emailId;
 	}
 
 	public static String userNameValidation(String userName) {
 
-		if ((!userName.matches("[A-Za-z\\s]*$"))) {
-			System.out.println("Plz Enter Valid Username:");
-			userName = MainClass.SCANNER.next();
+		if (!userName.matches("[A-Za-z\\s]*$")) {
+			System.out.println("Please Enter Valid Username:");
+			userName = ChatBot.SCANNER.next();
 
 			userNameValidation(userName);
 		}
@@ -26,10 +27,10 @@ public class Validation {
 
 	public static String passwordValidation(String password) {
 
-		if (!(password.matches(".*[a-z]{1,}.*") && password.matches(".*[A-Z]{1,}.*")
-				&& password.matches(".*[0-9]{1,}.*") && password.matches(".*[@#$()!~%^&|*?.,]{1,}.*"))) {
-			System.out.println("Plz Give Strong Password");
-			password = MainClass.SCANNER.next();
+		if (!password.matches(".*[a-z]{1,}.*") && password.matches(".*[A-Z]{1,}.*")
+				&& password.matches(".*[0-9]{1,}.*") && password.matches(".*[@#$()!~%^&|*?.,]{1,}.*")) {
+			System.out.println("Please Give Strong Password");
+			password = ChatBot.SCANNER.next();
 
 			passwordValidation(password);
 		}
@@ -38,9 +39,9 @@ public class Validation {
 
 	public static String mobileNumberValidation(String mobileNumber) {
 
-		if ((!mobileNumber.matches("[6-9]{1}[0-9]{9}"))) {
+		if (!mobileNumber.matches("[6-9]{1}[0-9]{9}")) {
 			System.out.println("Please Enter Valid Phone Number");
-			mobileNumber = MainClass.SCANNER.next();
+			mobileNumber = ChatBot.SCANNER.next();
 
 			passwordValidation(mobileNumber);
 		}

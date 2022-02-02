@@ -1,16 +1,14 @@
 package com.chatbot.service;
 
-import java.sql.SQLException;
-
 import com.chatbot.dao.AdminDao;
 import com.chatbot.dao.DatabaseValidation;
 import com.chatbot.dao.UserDao;
 
 public class ServiceImplementation implements Service {
-	final AdminDao ADMIN_DAO = new AdminDao();
-    final UserDao USER_DAO = new UserDao();
+	private final AdminDao ADMIN_DAO = new AdminDao();
+    private final UserDao USER_DAO = new UserDao();
 
-	public void adminSignUp(String emailId, String userName, String password)throws ClassNotFoundException, SQLException {
+	public void adminSignUp(String emailId, String userName, String password){
 		boolean emailValidation = DatabaseValidation.isEmailValidate(emailId);
 		boolean userNameValidation = DatabaseValidation.isUserNameValidate(userName);
 		boolean passwordValidation = DatabaseValidation.isPasswordValidate(password);
@@ -20,11 +18,11 @@ public class ServiceImplementation implements Service {
 		}
 	}
 
-	public void adminSignIn(String userName, String password) throws ClassNotFoundException, SQLException {
+	public void adminSignIn(String userName, String password)  {
 		ADMIN_DAO.adminSignIn(userName, password);
 	}
 
-	public void userSignUp(String mobileNumber, String userName, String password)throws ClassNotFoundException, SQLException {
+	public void userSignUp(String mobileNumber, String userName, String password) {
 		boolean mobileNumberValidation = DatabaseValidation.isEmailValidate(mobileNumber);
 		boolean userNameValidation = DatabaseValidation.isUserNameValidate(userName);
 		boolean passwordValidation = DatabaseValidation.isPasswordValidate(password);
@@ -34,7 +32,7 @@ public class ServiceImplementation implements Service {
 		}
 	}
 
-	public void userSignIn(String userName, String password) throws ClassNotFoundException, SQLException {
+	public void userSignIn(String userName, String password) {
 		USER_DAO.userSignIn(userName, password);
 	}
 }

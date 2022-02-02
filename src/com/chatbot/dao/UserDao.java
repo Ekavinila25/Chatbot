@@ -2,21 +2,21 @@ package com.chatbot.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserDao extends DatabaseConnection {
+	public void userSignUp(String mobileNumber, String userName, String password) {
 
-	public void userSignUp(String mobileNumber, String userName, String password)throws ClassNotFoundException, SQLException {
-		
 		try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
 			statement.executeUpdate("Insert into user values('" + mobileNumber + "','" + userName + "','" + password + "')");
 			System.out.println("Welcome to user portal");
+		} catch (Exception e) {
+			System.out.println("Sql Error");
 		}
 	}
 
-	public void userSignIn(String userName, String password) throws ClassNotFoundException, SQLException {
-		
+	public void userSignIn(String userName, String password) {
+
 		try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
 			String existingUserName = "";
 			String existingPassword = "";
@@ -26,17 +26,19 @@ public class UserDao extends DatabaseConnection {
 				existingUserName = existingUserResult.getString(2);
 				existingPassword = existingUserResult.getString(3);
 			}
-			
+
 			if (existingUserName.equals(userName)) {
 
 				if (existingPassword.equals(password)) {
 					System.out.println("Login Successful");
 				} else {
-					System.out.println("Invalid Password");
+					System.out.println("Invalid one");
 				}
 			} else {
-				System.out.println("Invalid Username");
+				System.out.println("Invalid ");
 			}
+		} catch (Exception e) {
+			System.out.println("Sql Error");
 		}
 	}
 }

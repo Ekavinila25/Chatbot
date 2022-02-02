@@ -2,21 +2,21 @@ package com.chatbot.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AdminDao extends DatabaseConnection {
+	public void adminSignUp(String emailId, String userName, String password) {
 
-	public void adminSignUp(String emailId, String userName, String password)throws ClassNotFoundException, SQLException {
-	   
-		try (Connection connection = getConnection(); final Statement statement = connection.createStatement()) {
+		try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
 			statement.executeUpdate("Insert into admin values('" + emailId + "','" + userName + "','" + password + "')");
 			System.out.println("Welcome to admin portal");
+		} catch (Exception e) {
+			System.out.println("Sql Error");
 		}
 	}
 
-	public void adminSignIn(String userName, String password) throws ClassNotFoundException, SQLException {
-		
+	public void adminSignIn(String userName, String password) {
+
 		try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
 			String existingUserName = "";
 			String existingPassword = "";
@@ -32,11 +32,11 @@ public class AdminDao extends DatabaseConnection {
 				if (existingPassword.equals(password)) {
 					System.out.println("Login Successful");
 				} else {
-					System.out.println("Invalid password");
+					System.out.println("Invalid One");
 				}
-			} else {
-				System.out.println("Invalid Username");
 			}
+		} catch (Exception e) {
+			System.out.println("Sql Error");
 		}
 	}
 }
