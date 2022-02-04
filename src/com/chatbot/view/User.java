@@ -1,30 +1,69 @@
 package com.chatbot.view;
 
 import com.chatbot.controller.ChatBotController;
+import com.chatbot.main.ChatBot;
 
+/**
+ * Get the input from the user
+ * 
+ * @author KavinilaE
+ *
+ */
 public class User {
-	private final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
-
+	private static final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
+	
+	/**
+	 * Get the mobileNum,userName,password pass into controller
+	 */
 	public void signUp() {
 		System.out.println("Enter The Mobilenum");
-		String mobileNum = Validation.mobileNumberValidation(ChatBot.SCANNER.next());
+		final String mobileNum = Validation.mobileNumberValidation(ChatBot.SCANNER.next());
 
 		System.out.println("Enter The Username");
-		String userName = Validation.userNameValidation(ChatBot.SCANNER.next());
+		final String userName = Validation.userNameValidation(ChatBot.SCANNER.next());
 
 		System.out.println("Enter The Password");
-		String password = Validation.passwordValidation(ChatBot.SCANNER.next());
-		
+		final String password = Validation.passwordValidation(ChatBot.SCANNER.next());
+
 		CHATBOT_CONTROLLER.userSignUp(mobileNum, userName, password);
 	}
 
+	/**
+	 * Get userName and password from user pass into controller
+	 */
 	public void signIn() {
 		System.out.println("Please Enter The Username");
-		String userName = ChatBot.SCANNER.next();
+		final String userName = ChatBot.SCANNER.next();
 
 		System.out.println("Please Enter The Password");
-		String password = ChatBot.SCANNER.next();
+		final String password = ChatBot.SCANNER.next();
 
 		CHATBOT_CONTROLLER.userSignIn(userName, password);
+	}
+
+	/**
+	 * Check valid user
+	 * 
+	 */
+	public void validUser(boolean isSignin) {
+
+		if (isSignin) {
+			userChat();
+		}else {
+			ChatBot.userChoice();
+		}
+	}
+
+	/**
+	 * Pass the parameter for question Chat
+	 */
+	public void userChat() {
+		System.out.println("Welcome you can start now");
+
+		while (true) {
+			String userQuestion = ChatBot.SCANNER.next();
+
+			CHATBOT_CONTROLLER.userChat(userQuestion);
+		}
 	}
 }
