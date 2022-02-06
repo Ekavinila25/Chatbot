@@ -7,7 +7,6 @@ import com.chatbot.main.ChatBot;
  * Get the input from the admin
  * 
  * @author KavinilaE
- *
  */
 public class Admin {
 	private final static ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
@@ -43,7 +42,7 @@ public class Admin {
 	}
 
 	/**
-	 * Get the value from controller
+	 * Check authorized Admin
 	 * 
 	 * @param isSignin
 	 */
@@ -57,15 +56,15 @@ public class Admin {
 	}
 
 	/**
-	 * Get the admin choice for add,update and delete.
+	 * Get the Admin choice for add,update and delete.
 	 */
 	public void adminChoice() {
 		System.out.println("Give 1 for add 2 for update 3 for delete ");
-		final int adminoption = ChatBot.SCANNER.nextInt();
+		final int adminOption = ChatBot.SCANNER.nextInt();
 
-		if (adminoption == 1) {
+		if (adminOption == 1) {
 			addChat();
-		} else if (adminoption == 2) {
+		} else if (adminOption == 2) {
 			updateChat();
 		} else {
 			deleteChat();

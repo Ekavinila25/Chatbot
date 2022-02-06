@@ -7,13 +7,12 @@ import com.chatbot.main.ChatBot;
  * Get the input from the user
  * 
  * @author KavinilaE
- *
  */
 public class User {
 	private static final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
 	
 	/**
-	 * Get the mobileNum,userName,password pass into controller
+	 * Get the mobileNum,userName,password from user pass into controller
 	 */
 	public void signUp() {
 		System.out.println("Enter The Mobilenum");
@@ -58,10 +57,10 @@ public class User {
 	 * Pass the parameter for question Chat
 	 */
 	public void userChat() {
-		System.out.println("Welcome you can start now");
+	
 
 		while (true) {
-			String userQuestion = ChatBot.SCANNER.next();
+			String userQuestion = ChatBot.SCANNER.nextLine();
 
 			CHATBOT_CONTROLLER.userChat(userQuestion);
 		}

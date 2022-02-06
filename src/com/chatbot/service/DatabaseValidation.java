@@ -5,15 +5,15 @@ import com.chatbot.dao.DatabaseResult;
 import com.chatbot.dao.UserDao;
 
 /**
- * Get the user input validate and add into database 
+ * Get the user input,validate and add into database 
+ * 
  * @author KavinilaE
- *
  */
 public class DatabaseValidation {
 	private static final DatabaseResult DATABASE_RESULT = new DatabaseResult();
 
 	/**
-	 * Check the emailId,userName,password check and add into database
+	 * Check the emailId,userName,password and add in database
 	 * 
 	 * @param emailId
 	 * @param userName
@@ -23,10 +23,10 @@ public class DatabaseValidation {
 	public static boolean adminSignUp(final String emailId,final String userName, final String password) {
 
 		if (DATABASE_RESULT.adminResult().contains(emailId)) {
-			System.out.println("EMAIL ID INVALID");
+			System.out.println("Please give another EmailId");
 		} else {
-			AdminDao.adminSignUp(emailId, userName, password);
-			System.out.println("inserted successfully");
+			AdminDao. insertNewAdmin(emailId, userName, password);
+			System.out.println("Welcome to admin portal");
 			return true;
 		}
 		return false;
@@ -43,15 +43,15 @@ public class DatabaseValidation {
 		if (DATABASE_RESULT.adminResult().contains(userName)) {
 
 			if (DATABASE_RESULT.adminResult().contains(password)) {
-				System.out.println("welcome you are signed in");
+				System.out.println("Welcome you are signed in");
 			} else {
-				System.out.println("invalid you are not signed in");
+				System.out.println("Invalid username and password are not signed in");
 			}
 		}
 	}
 
 	/**
-	 * Validate the mobileNumber,userName,password validate and insert into user table
+	 * Check the mobileNumber,userName,password and insert into user table.
 	 * 
 	 * @param mobileNumber
 	 * @param userName
@@ -61,10 +61,10 @@ public class DatabaseValidation {
 	public static boolean userSignUp(final String mobileNumber,final String userName,final String password) {
 
 		if (DATABASE_RESULT.userResult().contains(mobileNumber)) {
-			System.out.println("give another mobile number");
+			System.out.println("Give another mobile number");
 		} else {
 			UserDao.userSignUp(mobileNumber, userName, password);
-			System.out.println("Login successfully");
+			System.out.println("Welcome");
 			return true;
 		}
 		return false;
@@ -83,7 +83,7 @@ public class DatabaseValidation {
 			if (DATABASE_RESULT.userResult().contains(password)) {
 				System.out.println("welcome u are signed in");
 			} else {
-				System.out.println("invalid u are not signed in");
+				System.out.println("Invalid u are not signed in");
 			}
 		}
 	}

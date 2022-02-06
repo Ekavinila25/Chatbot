@@ -1,6 +1,5 @@
 package com.chatbot.main;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.chatbot.view.Admin;
@@ -10,7 +9,6 @@ import com.chatbot.view.User;
  * Get the input from user
  * 
  * @author KavinilaE
- *
  */
 public class ChatBot {
 	public final static Scanner SCANNER = new Scanner(System.in);
@@ -49,7 +47,6 @@ public class ChatBot {
 	/**
 	 * Get input from user for authentication.
 	 * 
-	 * @throws SQLException
 	 */
 	public static void userChoice() {
 		System.out.println("1.SignUp 2.Signin");

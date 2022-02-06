@@ -2,22 +2,26 @@ package com.chatbot.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
- * Get the connection.
+ * Get connection
  * 
- * @return
+ * @author KavinilaE
  */
 public class DatabaseConnection {
 
+	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/kavinila";
+	private static final String DATABASE_NAME = "root";
+	private static final String DATABASE_PASSWORD = "Kavi@967761";
+	private static Connection connection;
+
 	public final static Connection getConnection() {
-		Connection connection = null;
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/kavinila", "root", "Kavi@967761");
-		} catch (Exception e) {
-			System.out.println("Connection Error");
+			connection = DriverManager.getConnection(JDBC_URL, DATABASE_NAME, DATABASE_PASSWORD);
+		} catch (SQLException exception) {
+			System.out.println("Exception");
 		}
 		return connection;
 	}

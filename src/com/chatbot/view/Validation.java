@@ -4,12 +4,13 @@ import com.chatbot.main.ChatBot;
 
 /**
  * Check the user input is valid or not.
+ * 
  * @author KavinilaE
- *
  */
 public class Validation {
+
 	/**
-	 * Validate the emailId.
+	 * Validate the EmailId.
 	 * 
 	 * @param emailId
 	 * @return
@@ -33,7 +34,7 @@ public class Validation {
 	 */
 	public static String userNameValidation(String userName) {
 
-		if (!userName.matches("^[A-Z][a-z]*$")) {
+		if (!userName.matches("^[a-z]*$")) {
 			System.out.println("Please Enter Valid Username:");
 			userName = ChatBot.SCANNER.next();
 
