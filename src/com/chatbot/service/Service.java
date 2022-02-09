@@ -1,20 +1,23 @@
 package com.chatbot.service;
 
+import com.chatbot.model.ChatBotUser;
+
 public interface Service {
-	boolean adminSignUp(String emailId, String userName, String password);
+    
+    boolean adminSignUp(ChatBotUser chatBotUser);
 
-	void adminSignIn(String userName, String password);
+    void adminSignIn(String userName, String password);
 
-	void addChat(String question, String answer);
+    void addChat(String question, String answer);
 
-	void updateChat(int id, String question, String answer);
+    void updateChat(int id, String question, String answer);
 
-	void deleteChat(int id);
+    void deleteChat(int id);
 
-	boolean userSignUp(String mobilenum, String username, String password);
+    boolean userSignUp(String mobilenum, String username, String password);
 
-	void userSignIn(String userName, String password);
+    void userSignIn(String userName, String password);
 
-	void userQuestion(String question);
+    void userQuestion(String question);
 
 }

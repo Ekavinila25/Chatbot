@@ -1,8 +1,8 @@
 package com.chatbot.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -11,49 +11,52 @@ import java.sql.Statement;
  * @author KavinilaE
  */
 public class UserDao {
-	
-	/**
-	 * 
-	 * @param mobileNumber
-	 * @param userName
-	 * @param password
-	 */
-	public static void userSignUp(final String mobileNumber, final String userName, final String password) {
 
-		try (Connection connection = DatabaseConnection.getConnection();
-				Statement statement = connection.createStatement()) {
-			statement.executeUpdate("Insert into user values('" + mobileNumber + "','" + userName + "','" + password + "')");
-		} catch (Exception e) {
-			System.out.println("Sql Error");
-		}
-	}
+    /**
+     * 
+     * @param mobileNumber
+     * @param userName
+     * @param password
+     */
+    public static void userSignUp(final String mobileNumber, final String userName, final String password) {
+        final String userInsertQuery = "Insert into user(mobilenumber,userName,password) values(?,?,?)";
 
-	/**
-	 * Get the result from chatTable.
-	 * 
-	 * @author KavinilaE
-	 * @throws SQLException
-	 */
-	public void doChat(final String userQuestion) throws SQLException {
+        try (Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(userInsertQuery)) {
+            preparedStatement.setString(1, mobileNumber);
+            preparedStatement.setString(2, userName);
+            preparedStatement.setString(3, password);
 
-		Connection connection = DatabaseConnection.getConnection();
-		Statement statement = connection.createStatement();
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("Sql Error");
+        }
+    }
 
-		String name2 = userQuestion;
-		ResultSet resultSet = statement.executeQuery("select* from chatbot");
-		int f = 0;
+    /**
+     * Get the result from chatTable.
+     * 
+     * @author KavinilaE
+     * @return
+     */
+    public void doChat(final String userQuestion) {
+        final String chatResult = "select question,answer from chatbot";
 
-		while (resultSet.next()) {
-			String Result = resultSet.getString(2);
-			if (name2.equalsIgnoreCase(Result)) {
+        try (Connection connection = DatabaseConnection.getConnection();
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(chatResult)) {
+            String question = userQuestion;
 
-				System.out.println(resultSet.getString(3));
-				f++;
-				break;
-			}
-		}
-		if (f == 0) {
-			System.out.println("sorry!!!.. I didn't UnderStand");
-		}
-	}
+            while (resultSet.next()) {
+                String questionResult = resultSet.getString(1);
+
+                if (question.equalsIgnoreCase(questionResult)) {
+                    System.out.println(resultSet.getString(2));
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+    }
 }

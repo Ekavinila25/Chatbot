@@ -3,14 +3,16 @@ package com.chatbot.service;
 import com.chatbot.dao.AdminDao;
 import com.chatbot.dao.DatabaseResult;
 import com.chatbot.dao.UserDao;
+import com.chatbot.model.ChatBotUser;
 
 /**
  * Get the user input,validate and add into database 
  * 
  * @author KavinilaE
  */
-public class DatabaseValidation {
-	private static final DatabaseResult DATABASE_RESULT = new DatabaseResult();
+public class ChatService {
+	 
+   private static final DatabaseResult DATABASE_RESULT = new DatabaseResult();
 
 	/**
 	 * Check the emailId,userName,password and add in database
@@ -20,12 +22,12 @@ public class DatabaseValidation {
 	 * @param password
 	 * @return
 	 */
-	public static boolean adminSignUp(final String emailId,final String userName, final String password) {
+	public static boolean adminSignUp(final ChatBotUser chatBotUser) {
 
-		if (DATABASE_RESULT.adminResult().contains(emailId)) {
+		if (DATABASE_RESULT.adminResult().contains(chatBotUser.getEmailId())) {
 			System.out.println("Please give another EmailId");
 		} else {
-			AdminDao. insertNewAdmin(emailId, userName, password);
+			AdminDao.insertNewAdmin(chatBotUser);
 			System.out.println("Welcome! to admin portal");
 			return true;
 		}

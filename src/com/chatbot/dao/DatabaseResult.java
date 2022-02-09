@@ -18,7 +18,7 @@ public class DatabaseResult {
 	 */
 	public List<String> adminResult() {
 		final List<String> adminResultList = new ArrayList<String>();
-		String adminResultQuery = "Select * from admin";
+		final String adminResultQuery = "Select * from admin";
 		
 		try (Connection connection = DatabaseConnection.getConnection();
 				Statement statement = connection.createStatement();
@@ -44,7 +44,7 @@ public class DatabaseResult {
 	 */
 	public List<String> userResult() {
 		final List<String> userResultSet = new ArrayList<String>();
-		String userResultQuery = "Select * from user";
+		final String userResultQuery = "Select * from user";
 		
 		try (Connection connection = DatabaseConnection.getConnection();
 				Statement statement = connection.createStatement();

@@ -51,8 +51,8 @@ public class Validation {
 	 */
 	public static String passwordValidation(String password) {
 
-		if (!password.matches(".*[a-z]{1,}.*") && password.matches(".*[A-Z]{1,}.*") && password.matches(".*[0-9]{1,}.*")
-				&& password.matches(".*[@#$()!~%^&|*?.,]{1,}.*")) {
+		if (!(password.matches(".*[a-z]{1,}.*") && password.matches(".*[A-Z]{1,}.*") && password.matches(".*[0-9]{1,}.*")
+				&& password.matches(".*[@#$()!~%^&|*?.,]{1,}.*"))) {
 			System.out.println("Please Give Strong Password");
 			password = ChatBot.SCANNER.next();
 

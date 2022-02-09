@@ -9,60 +9,58 @@ import com.chatbot.main.ChatBot;
  * @author KavinilaE
  */
 public class User {
-	private static final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
-	
-	/**
-	 * Get the mobileNum,userName,password from user pass into controller
-	 */
-	public void signUp() {
-		System.out.println("Enter The Mobilenum");
-		final String mobileNum = Validation.mobileNumberValidation(ChatBot.SCANNER.next());
+    private static final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
 
-		System.out.println("Enter The Username");
-		final String userName = Validation.userNameValidation(ChatBot.SCANNER.next());
+    /**
+     * Get the mobileNum,userName,password from user pass into controller
+     */
+    public void signUp() {
+        System.out.println("Enter The Mobilenum");
+        final String mobileNum = Validation.mobileNumberValidation(ChatBot.SCANNER.next());
 
-		System.out.println("Enter The Password");
-		final String password = Validation.passwordValidation(ChatBot.SCANNER.next());
+        System.out.println("Enter The Username");
+        final String userName = Validation.userNameValidation(ChatBot.SCANNER.next());
 
-		CHATBOT_CONTROLLER.userSignUp(mobileNum, userName, password);
-	}
+        System.out.println("Enter The Password");
+        final String password = Validation.passwordValidation(ChatBot.SCANNER.next());
 
-	/**
-	 * Get userName and password from user pass into controller
-	 */
-	public void signIn() {
-		System.out.println("Please Enter The Username");
-		final String userName = ChatBot.SCANNER.next();
+        CHATBOT_CONTROLLER.userSignUp(mobileNum, userName, password);
+    }
 
-		System.out.println("Please Enter The Password");
-		final String password = ChatBot.SCANNER.next();
+    /**
+     * Get userName and password from user pass into controller
+     */
+    public void signIn() {
+        System.out.println("Please Enter The Username");
+        final String userName = ChatBot.SCANNER.next();
 
-		CHATBOT_CONTROLLER.userSignIn(userName, password);
-	}
+        System.out.println("Please Enter The Password");
+        final String password = ChatBot.SCANNER.next();
 
-	/**
-	 * Check valid user
-	 * 
-	 */
-	public void validUser(boolean isSignin) {
+        CHATBOT_CONTROLLER.userSignIn(userName, password);
+    }
 
-		if (isSignin) {
-			userChat();
-		}else {
-			ChatBot.userChoice();
-		}
-	}
+    /**
+     * Check valid user
+     * 
+     */
+    public void validUser(final boolean isSignin) {
 
-	/**
-	 * Pass the parameter for question Chat
-	 */
-	public void userChat() {
-	
+        if (isSignin) {
+            userChat();
+        } else {
+            ChatBot.userChoice();
+        }
+    }
 
-		while (true) {
-			String userQuestion = ChatBot.SCANNER.nextLine();
+    /**
+     * Pass the parameter for question Chat
+     */
+    public void userChat() {
 
-			CHATBOT_CONTROLLER.userChat(userQuestion);
-		}
-	}
+        while (true) {
+            String userQuestion = ChatBot.SCANNER.next();
+            CHATBOT_CONTROLLER.userChat(userQuestion);
+        }
+    }
 }
