@@ -3,7 +3,6 @@ package com.chatbot.view;
 import org.apache.log4j.Logger;
 import com.chatbot.controller.ChatBotController;
 import com.chatbot.main.ChatBot;
-import com.chatbot.model.ChatBotUser;
 
 /**
  * Get the input from the admin
@@ -17,21 +16,68 @@ public class Admin {
     private final ChatBot chatBot = new ChatBot();
 
     /**
-     * Get the emailId,userName,password from admin and pass into controller for
-     * signUp
+     * Get the emailId,userName,password from admin and pass for validation
      */
     public void adminSignUp() {
-        LOGGER.info("Enter Your EmailId");
-        final String emailId = Validation.emailIdValidation(ChatBot.SCANNER.nextLine());
+        LOGGER.info("Enter your emailId");
+        final String emailId = Admin.getMailId();
+        
+        LOGGER.info("Enter your name");
+        final String userName = Admin.getUserName();
+        
+        LOGGER.info("Enter your password");
+        final String password = Admin.getPassword();
+       
+        CHATBOT_CONTROLLER.adminSignUp(emailId, userName, password);
+    }
+    
+    /**
+     * Validate emailId and pass into controller.
+     * 
+     * @return
+     */
+    private static String getMailId() {
+        
+        final String emailId = ChatBot.SCANNER.nextLine();
+        final boolean isEmailValid = Validation.emailIdValidation(emailId);
+        
+        if (!isEmailValid) {
+            LOGGER.info("Please enter valid emailId");
+            return getMailId();
+        }
+        return emailId;
+    }
 
-        LOGGER.info("Enter Your Username");
-        final String userName = Validation.userNameValidation(ChatBot.SCANNER.nextLine());
-
-        LOGGER.info("Enter Your Password");
-        final String password = Validation.passwordValidation(ChatBot.SCANNER.nextLine());
-        ChatBotUser chatBotUser = new ChatBotUser(emailId, userName, password);
-
-        CHATBOT_CONTROLLER.adminSignUp(chatBotUser);
+    /**
+     * Validate username and pass into controller.
+     * 
+     * @return
+     */
+    private static String getUserName() {
+        final String userName = ChatBot.SCANNER.nextLine();
+        final boolean isNameValid = Validation.userNameValidation(userName);
+        
+        if (!isNameValid) {
+            LOGGER.info("Please enter username");
+            return getUserName();
+        }
+        return userName;
+    }
+    
+    /**
+     * Validate the password and pass into controller
+     * 
+     * @return
+     */
+    private static String getPassword() {
+        final String password = ChatBot.SCANNER.nextLine();
+        final boolean isPasswordValid = Validation.passwordValidation(password);
+        
+        if (!isPasswordValid) {
+            LOGGER.info("Please enter valid password");
+            return getPassword();
+        }
+        return password;
     }
 
     /**
@@ -51,14 +97,17 @@ public class Admin {
      * Check authorized Admin
      * 
      * @param isSignin
+     * @return 
      */
-    public void adminAddReturn(final boolean isSignin) {
+    public boolean adminAddReturn(final boolean isSignin) {
 
         if (isSignin) {
             adminChoice();
         } else {
+            LOGGER.info("Please give valid username or signup");
             chatBot.adminChoice();
         }
+        return isSignin;
     }
 
     /**

@@ -11,29 +11,75 @@ import com.chatbot.main.ChatBot;
  * @author KavinilaE
  */
 public class User {
-    
+
     private final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
     private static final Logger LOGGER = Logger.getLogger(User.class);
     private final ChatBot chatBot = new ChatBot();
 
     /**
-     * Get the mobileNum,userName,password from user pass into controller
+     * Get the mobileNum,userName,password from user pass for validation
      */
     public void signUp() {
-        LOGGER.info("Enter The Mobilenum");
-        final String mobileNum = Validation.mobileNumberValidation(ChatBot.SCANNER.nextLine());
+        LOGGER.info("Enter your mobilenumber");
+        final String mobileNumber = User.getMobileNumber();
 
-        LOGGER.info("Enter The Username");
-        final String userName = Validation.userNameValidation(ChatBot.SCANNER.nextLine());
+        LOGGER.info("Enter your username");
+        final String userName = User.getUserName();
 
-        LOGGER.info("Enter The Password");
-        final String password = Validation.passwordValidation(ChatBot.SCANNER.nextLine());
+        LOGGER.info("Enter Your password");
+        final String password = User.getPassword();
 
-        CHATBOT_CONTROLLER.userSignUp(mobileNum, userName, password);
+        CHATBOT_CONTROLLER.userSignUp(mobileNumber, userName, password);
     }
 
     /**
-     * Get userName and password from user pass into controller
+     * Validate the mobile number and pass into controller
+     * 
+     * @return
+     */
+    private static String getMobileNumber() {
+        final String mobileNumber = ChatBot.SCANNER.nextLine();
+        final boolean isEmailValid = Validation.mobileNumberValidation(mobileNumber);
+
+        if (!isEmailValid) {
+            LOGGER.info("Please enter valid emailId");
+            return getMobileNumber();
+        }
+        return mobileNumber;
+    }
+
+    /**
+     * Validate the username and pass into controller
+     * @return
+     */
+    private static String getUserName() {
+        final String userName = ChatBot.SCANNER.nextLine();
+        final boolean isNameValid = Validation.userNameValidation(userName);
+
+        if (!isNameValid) {
+            LOGGER.info("Please enter username");
+            return getUserName();
+        }
+        return userName;
+    }
+
+    /**
+     * Validate the password and pass into controller
+     * @return
+     */
+    private static String getPassword() {
+        final String password = ChatBot.SCANNER.nextLine();
+        final boolean isPasswordValid = Validation.passwordValidation(password);
+
+        if (!isPasswordValid) {
+            LOGGER.info("Please enter valid password");
+            return getPassword();
+        }
+        return password;
+    }
+
+    /**
+     * Get userName and password from user pass into controller for signin
      */
     public void signIn() {
         LOGGER.info("Please Enter The Username");

@@ -6,7 +6,6 @@ import com.chatbot.dao.AdminDao;
 import com.chatbot.dao.DatabaseResult;
 import com.chatbot.dao.UserDao;
 import com.chatbot.main.ChatBot;
-import com.chatbot.model.ChatBotUser;
 
 /**
  * Get the user input,validate and add into database
@@ -17,18 +16,19 @@ public class ChatService {
 
     private static final DatabaseResult DATABASE_RESULT = new DatabaseResult();
     private static final Logger LOGGER = Logger.getLogger(ChatBot.class);
+
     /**
      * Check the emailId,userName,password and add in database
      * 
      * @param chatBotUser
      * @return
      */
-    public static boolean adminSignUp(final ChatBotUser chatBotUser) {
+    public static boolean adminSignUp(final String emailId,final String userName,final String password) {
 
-        if (DATABASE_RESULT.adminResult().contains(chatBotUser.getEmailId())) {
+        if (DATABASE_RESULT.adminResult().contains(emailId)) {
             LOGGER.info("Please give another EmailId");
         } else {
-            AdminDao.insertNewAdmin(chatBotUser);
+            AdminDao.insertNewAdmin(emailId, userName, password);
             LOGGER.info("Welcome! to admin portal");
             return true;
         }

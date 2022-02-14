@@ -1,11 +1,9 @@
 package com.chatbot.controller;
 
-import com.chatbot.model.ChatBotUser;
 import com.chatbot.service.ChatBotServiceImplementation;
 import com.chatbot.service.Service;
 import com.chatbot.view.Admin;
 import com.chatbot.view.User;
-
 
 public class ChatBotController {
     
@@ -13,11 +11,11 @@ public class ChatBotController {
 	private static final User USER = new User();
 	private static final Service SERVICE_IMPLEMENTATION = new ChatBotServiceImplementation();
 
-	public void adminSignUp(final ChatBotUser chatBotUser) {
-		ADMIN.adminAddReturn(SERVICE_IMPLEMENTATION.adminSignUp(chatBotUser));
+	public void adminSignUp(final String emailId,final String userName,final String password) {
+		ADMIN.adminAddReturn(SERVICE_IMPLEMENTATION.adminSignUp(emailId, userName, password));
 	}
-
-	public void adminSignIn(final String userName, final String password) {
+	
+    public void adminSignIn(final String userName, final String password) {
 		ADMIN.adminAddReturn(SERVICE_IMPLEMENTATION.adminSignIn(userName, password));
 	}
 
@@ -44,6 +42,4 @@ public class ChatBotController {
 	public void userChat(final String userQuestion) {
 		SERVICE_IMPLEMENTATION.userQuestion(userQuestion);
 	}
-
-   
 }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class DatabaseResult {
 
-	/**
+    /**
 	 * store the admin result and return to service implementation.
 	 */
 	public List<String> adminResult() {

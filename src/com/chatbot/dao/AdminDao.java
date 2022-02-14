@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.chatbot.model.ChatBotUser;
-
 /**
  * Modify the chat table
  * 
@@ -17,16 +15,16 @@ public class AdminDao {
      * Insert emailId,userName,password into Admin table.
      * 
      */
-    public static void insertNewAdmin(final ChatBotUser chatBotUser) {
-       final String adminInsertQuery = "Insert into admin(emailid,username,password) values(?,?,?)";
-       
+    public static void insertNewAdmin(final String emailId, final String userName, final String password) {
+        final String adminInsertQuery = "Insert into admin(emailid,username,password) values(?,?,?)";
+
         try (Connection connection = DatabaseConnection.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(adminInsertQuery)) {
 
-            preparedStatement.setString(1, chatBotUser.getEmailId());
-            preparedStatement.setString(2, chatBotUser.getUserName());
-            preparedStatement.setString(3, chatBotUser.getPassword());
-            
+            preparedStatement.setString(1, emailId);
+            preparedStatement.setString(2, userName);
+            preparedStatement.setString(3, password);
+
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Sql Error");
@@ -40,13 +38,13 @@ public class AdminDao {
      * @param answer
      */
     public boolean addChat(final String question, final String answer) {
-       final String chatbotInsertQuery = "Insert into chatbot(question,answer) values(?,?)";
-        
+        final String chatbotInsertQuery = "Insert into chatbot(question,answer) values(?,?)";
+
         try (Connection connection = DatabaseConnection.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(chatbotInsertQuery)) {
             preparedStatement.setString(1, question);
             preparedStatement.setString(2, answer);
-            
+
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
