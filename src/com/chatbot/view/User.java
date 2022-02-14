@@ -12,8 +12,9 @@ import com.chatbot.main.ChatBot;
  */
 public class User {
     
-    private static final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
+    private final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
     private static final Logger LOGGER = Logger.getLogger(User.class);
+    private final ChatBot chatBot = new ChatBot();
 
     /**
      * Get the mobileNum,userName,password from user pass into controller
@@ -53,7 +54,7 @@ public class User {
         if (isSignin) {
             userChat();
         } else {
-            ChatBot.userChoice();
+            chatBot.userChoice();
         }
     }
 
