@@ -8,6 +8,7 @@ import com.chatbot.view.User;
 
 
 public class ChatBotController {
+    
 	private static final Admin ADMIN = new Admin();
 	private static final User USER = new User();
 	private static final Service SERVICE_IMPLEMENTATION = new ChatBotServiceImplementation();
@@ -17,7 +18,7 @@ public class ChatBotController {
 	}
 
 	public void adminSignIn(final String userName, final String password) {
-		SERVICE_IMPLEMENTATION.adminSignIn(userName, password);
+		ADMIN.adminAddReturn(SERVICE_IMPLEMENTATION.adminSignIn(userName, password));
 	}
 
 	public void addition(final String question, final String answer) {
@@ -37,10 +38,12 @@ public class ChatBotController {
 	}
 
 	public void userSignIn(final String userName, final String password) {
-		SERVICE_IMPLEMENTATION.userSignIn(userName, password);
+		USER.validUser(SERVICE_IMPLEMENTATION.userSignIn(userName, password));
 	}
 
 	public void userChat(final String userQuestion) {
 		SERVICE_IMPLEMENTATION.userQuestion(userQuestion);
 	}
+
+   
 }

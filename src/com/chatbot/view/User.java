@@ -1,5 +1,7 @@
 package com.chatbot.view;
 
+import org.apache.log4j.Logger;
+
 import com.chatbot.controller.ChatBotController;
 import com.chatbot.main.ChatBot;
 
@@ -9,20 +11,22 @@ import com.chatbot.main.ChatBot;
  * @author KavinilaE
  */
 public class User {
+    
     private static final ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
+    private static final Logger LOGGER = Logger.getLogger(User.class);
 
     /**
      * Get the mobileNum,userName,password from user pass into controller
      */
     public void signUp() {
-        System.out.println("Enter The Mobilenum");
-        final String mobileNum = Validation.mobileNumberValidation(ChatBot.SCANNER.next());
+        LOGGER.info("Enter The Mobilenum");
+        final String mobileNum = Validation.mobileNumberValidation(ChatBot.SCANNER.nextLine());
 
-        System.out.println("Enter The Username");
-        final String userName = Validation.userNameValidation(ChatBot.SCANNER.next());
+        LOGGER.info("Enter The Username");
+        final String userName = Validation.userNameValidation(ChatBot.SCANNER.nextLine());
 
-        System.out.println("Enter The Password");
-        final String password = Validation.passwordValidation(ChatBot.SCANNER.next());
+        LOGGER.info("Enter The Password");
+        final String password = Validation.passwordValidation(ChatBot.SCANNER.nextLine());
 
         CHATBOT_CONTROLLER.userSignUp(mobileNum, userName, password);
     }
@@ -31,11 +35,11 @@ public class User {
      * Get userName and password from user pass into controller
      */
     public void signIn() {
-        System.out.println("Please Enter The Username");
-        final String userName = ChatBot.SCANNER.next();
+        LOGGER.info("Please Enter The Username");
+        final String userName = ChatBot.SCANNER.nextLine();
 
-        System.out.println("Please Enter The Password");
-        final String password = ChatBot.SCANNER.next();
+        LOGGER.info("Please Enter The Password");
+        final String password = ChatBot.SCANNER.nextLine();
 
         CHATBOT_CONTROLLER.userSignIn(userName, password);
     }
@@ -44,7 +48,7 @@ public class User {
      * Check valid user
      * 
      */
-    public void validUser(final boolean isSignin) {
+    public void validUser(boolean isSignin) {
 
         if (isSignin) {
             userChat();
@@ -59,7 +63,7 @@ public class User {
     public void userChat() {
 
         while (true) {
-            String userQuestion = ChatBot.SCANNER.next();
+            final String userQuestion = ChatBot.SCANNER.nextLine();
             CHATBOT_CONTROLLER.userChat(userQuestion);
         }
     }

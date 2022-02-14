@@ -11,6 +11,7 @@ import com.chatbot.view.Admin;
  * @author KavinilaE
  */
 public class ChatBotServiceImplementation implements Service {
+    
     private final static AdminDao ADMIN_DAO = new AdminDao();
     private final static UserDao USER_DAO = new UserDao();
     private final static Admin ADMIN = new Admin();
@@ -29,8 +30,8 @@ public class ChatBotServiceImplementation implements Service {
      * 
      * @author KavinilaE
      */
-    public void adminSignIn(final String userName, final String password) {
-        ChatService.adminSignIn(userName, password);
+    public boolean adminSignIn(final String userName, final String password) {
+        return ChatService.adminSignIn(userName, password);
     }
 
     /**
@@ -46,9 +47,10 @@ public class ChatBotServiceImplementation implements Service {
      * Get the input and pass into validation for userSignin
      * 
      * @author KavinilaE
+     * @return 
      */
-    public void userSignIn(final String userName, final String password) {
-        ChatService.userSignIn(userName, password);
+    public boolean userSignIn(final String userName, final String password) {
+        return ChatService.userSignIn(userName, password);
     }
 
     /**

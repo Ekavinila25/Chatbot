@@ -1,6 +1,7 @@
 package com.chatbot.model;
 
 public class UserChat {
+    
     private String question;
     private String answer;
 

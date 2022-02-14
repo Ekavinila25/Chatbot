@@ -6,17 +6,17 @@ public interface Service {
     
     boolean adminSignUp(ChatBotUser chatBotUser);
 
-    void adminSignIn(String userName, String password);
+    boolean adminSignIn(String userName, String password);
+    
+    boolean userSignUp(String mobilenum, String username, String password);
+
+    boolean userSignIn(String userName, String password);
 
     void addChat(String question, String answer);
 
     void updateChat(int id, String question, String answer);
 
     void deleteChat(int id);
-
-    boolean userSignUp(String mobilenum, String username, String password);
-
-    void userSignIn(String userName, String password);
 
     void userQuestion(String question);
 

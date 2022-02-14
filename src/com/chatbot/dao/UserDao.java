@@ -13,13 +13,14 @@ import java.sql.Statement;
 public class UserDao {
 
     /**
+     * Insert new user details into database
      * 
      * @param mobileNumber
      * @param userName
      * @param password
      */
     public static void userSignUp(final String mobileNumber, final String userName, final String password) {
-        final String userInsertQuery = "Insert into user(mobilenumber,userName,password) values(?,?,?)";
+        final String userInsertQuery = "Insert into user(mobilenumber, userName, password) values(?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(userInsertQuery)) {
@@ -37,18 +38,17 @@ public class UserDao {
      * Get the result from chatTable.
      * 
      * @author KavinilaE
-     * @return
      */
     public void doChat(final String userQuestion) {
-        final String chatResult = "select question,answer from chatbot";
+        final String chatResult = "select question, answer from chatbot";
 
         try (Connection connection = DatabaseConnection.getConnection();
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(chatResult)) {
-            String question = userQuestion;
+            final String question = userQuestion;
 
             while (resultSet.next()) {
-                String questionResult = resultSet.getString(1);
+                final String questionResult = resultSet.getString(1);
 
                 if (question.equalsIgnoreCase(questionResult)) {
                     System.out.println(resultSet.getString(2));

@@ -2,6 +2,7 @@ package com.chatbot.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +26,15 @@ public class DatabaseResult {
 				ResultSet existingAdminResult = statement.executeQuery(adminResultQuery)) {
 
 			while (existingAdminResult.next()) {
-				String emails = existingAdminResult.getString(1);
-				String userName = existingAdminResult.getString(2);
-				String password = existingAdminResult.getString(3);
+				final String email = existingAdminResult.getString(1);
+				final String userName = existingAdminResult.getString(2);
+				final String password = existingAdminResult.getString(3);
 
-				adminResultList.add(emails);
+				adminResultList.add(email);
 				adminResultList.add(userName);
 				adminResultList.add(password);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Sql Error");
 		}
 		return adminResultList;
@@ -43,7 +44,7 @@ public class DatabaseResult {
 	 * Store the user result and return to service implementation.
 	 */
 	public List<String> userResult() {
-		final List<String> userResultSet = new ArrayList<String>();
+		final List<String> userResultList = new ArrayList<String>();
 		final String userResultQuery = "Select * from user";
 		
 		try (Connection connection = DatabaseConnection.getConnection();
@@ -51,17 +52,17 @@ public class DatabaseResult {
 				ResultSet existingUserResult = statement.executeQuery(userResultQuery)) {
 			
 			while (existingUserResult.next()) {
-				String mobileNumber = existingUserResult.getString(1);
-				String userName = existingUserResult.getString(2);
-				String password = existingUserResult.getString(3);
+				final String mobileNumber = existingUserResult.getString(1);
+				final String userName = existingUserResult.getString(2);
+				final String password = existingUserResult.getString(3);
 
-				userResultSet.add(mobileNumber);
-				userResultSet.add(userName);
-				userResultSet.add(password);
+				userResultList.add(mobileNumber);
+				userResultList.add(userName);
+				userResultList.add(password);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Sql Error");
 		}
-		return userResultSet;
+		return userResultList;
 	}
 }

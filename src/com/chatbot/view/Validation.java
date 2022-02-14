@@ -1,5 +1,7 @@
 package com.chatbot.view;
 
+import org.apache.log4j.Logger;
+
 import com.chatbot.main.ChatBot;
 
 /**
@@ -8,8 +10,10 @@ import com.chatbot.main.ChatBot;
  * @author KavinilaE
  */
 public class Validation {
-
-	/**
+    
+    private static final Logger LOGGER = Logger.getLogger(Validation.class);
+	
+    /**
 	 * Validate the EmailId.
 	 * 
 	 * @param emailId
@@ -18,8 +22,8 @@ public class Validation {
 	public static String emailIdValidation(String emailId) {
 
 		if (!emailId.matches("^[A-Za-z0-9+_.-]+@[a-z]+.[a-z]{2,3}$")) {
-			System.out.println("Please Enter Valid Email Id:");
-			emailId = ChatBot.SCANNER.next();
+		    LOGGER.info("Please Enter Valid Email Id:");
+			emailId = ChatBot.SCANNER.nextLine();
 
 			emailIdValidation(emailId);
 		}
@@ -34,9 +38,9 @@ public class Validation {
 	 */
 	public static String userNameValidation(String userName) {
 
-		if (!userName.matches("^[a-z]*$")) {
-			System.out.println("Please Enter Valid Username:");
-			userName = ChatBot.SCANNER.next();
+		if (!(userName.matches("^[a-z\\sa-z]*$"))) {
+		    LOGGER.info("Please Enter Valid Username:");
+			userName = ChatBot.SCANNER.nextLine();
 
 			userNameValidation(userName);
 		}
@@ -53,8 +57,8 @@ public class Validation {
 
 		if (!(password.matches(".*[a-z]{1,}.*") && password.matches(".*[A-Z]{1,}.*") && password.matches(".*[0-9]{1,}.*")
 				&& password.matches(".*[@#$()!~%^&|*?.,]{1,}.*"))) {
-			System.out.println("Please Give Strong Password");
-			password = ChatBot.SCANNER.next();
+		    LOGGER.info("Please Give Strong Password");
+			password = ChatBot.SCANNER.nextLine();
 
 			passwordValidation(password);
 		}
@@ -70,8 +74,8 @@ public class Validation {
 	public static String mobileNumberValidation(String mobileNumber) {
 
 		if (!mobileNumber.matches("[6-9]{1}[0-9]{9}")) {
-			System.out.println("Please Enter Valid Phone Number");
-			mobileNumber = ChatBot.SCANNER.next();
+		    LOGGER.info("Please Enter Valid Phone Number");
+			mobileNumber = ChatBot.SCANNER.nextLine();
 
 			passwordValidation(mobileNumber);
 		}

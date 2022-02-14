@@ -1,5 +1,7 @@
 package com.chatbot.view;
 
+import org.apache.log4j.Logger;
+
 import com.chatbot.controller.ChatBotController;
 import com.chatbot.main.ChatBot;
 import com.chatbot.model.ChatBotUser;
@@ -12,20 +14,21 @@ import com.chatbot.model.ChatBotUser;
 public class Admin {
 
     private final static ChatBotController CHATBOT_CONTROLLER = new ChatBotController();
-
+    private static final Logger LOGGER = Logger.getLogger(Admin.class);
+    
     /**
      * Get the emailId,userName,password from admin and pass into controller for
      * signUp
      */
     public void adminSignUp() {
-        System.out.println("Enter Your EmailId");
-        final String emailId = Validation.emailIdValidation(ChatBot.SCANNER.next());
+        LOGGER.info("Enter Your EmailId");
+        final String emailId = Validation.emailIdValidation(ChatBot.SCANNER.nextLine());
 
-        System.out.println("Enter Your Username");
-        final String userName = Validation.userNameValidation(ChatBot.SCANNER.next());
+        LOGGER.info("Enter Your Username");
+        final String userName = Validation.userNameValidation(ChatBot.SCANNER.nextLine());
 
-        System.out.println("Enter Your Password");
-        final String password = Validation.passwordValidation(ChatBot.SCANNER.next());
+        LOGGER.info("Enter Your Password");
+        final String password = Validation.passwordValidation(ChatBot.SCANNER.nextLine());
         ChatBotUser chatBotUser = new ChatBotUser(emailId, userName, password);
 
         CHATBOT_CONTROLLER.adminSignUp(chatBotUser);
@@ -35,11 +38,11 @@ public class Admin {
      * Get the userName,password and pass into controller for signIn
      */
     public void adminSignIn() {
-        System.out.println("Enter Your Username");
-        final String userName = ChatBot.SCANNER.next();
+        LOGGER.info("Enter Your Username");
+        final String userName = ChatBot.SCANNER.nextLine();
 
-        System.out.println("Enter Your Password");
-        final String password = ChatBot.SCANNER.next();
+        LOGGER.info("Enter Your Password");
+        final String password = ChatBot.SCANNER.nextLine();
 
         CHATBOT_CONTROLLER.adminSignIn(userName, password);
     }
@@ -62,9 +65,12 @@ public class Admin {
      * Get the Admin choice for add,update and delete.
      */
     public void adminChoice() {
-        System.out.println("Give 1 for add 2 for update 3 for delete ");
-        final int adminOption = ChatBot.SCANNER.nextInt();
-
+        LOGGER.info("Give 1 for add 2 for update 3 for delete ");
+      
+        try {
+            final String adminChoice = ChatBot.SCANNER.nextLine();
+            final int adminOption = Integer.parseInt(adminChoice);
+        
         if (adminOption == 1) {
             addChat();
         } else if (adminOption == 2) {
@@ -72,7 +78,11 @@ public class Admin {
         } else if (adminOption == 3) {
             deleteChat();
         } else {
-            System.out.println("Please give valid one");
+            LOGGER.info("Please give the number 1 or 2 ");
+            adminChoice();
+        }}catch(NumberFormatException e) {
+            LOGGER.error("Please give valid input");
+            adminChoice();
         }
     }
 
@@ -80,29 +90,28 @@ public class Admin {
      * Get the question, answer for add the chat
      */
     public void addChat() {
-        System.out.println("Enter Your question");
-        final String question = ChatBot.SCANNER.next();
+        LOGGER.info("Enter Your question");
+        final String question = ChatBot.SCANNER.nextLine();
 
-        System.out.println("Enter Your answer");
-        final String answer = ChatBot.SCANNER.next();
+        LOGGER.info("Enter Your answer");
+        final String answer = ChatBot.SCANNER.nextLine();
 
         CHATBOT_CONTROLLER.addition(question, answer);
-
     }
 
     /**
      * Get the id,question,answer for update the chat
      */
     public void updateChat() {
-        System.out.println("Enter The Id do you want to update");
-        final int id = ChatBot.SCANNER.nextInt();
-        // final int id1 = Integer.parseInt(id);
+        LOGGER.info("Enter The Id do you want to update");
+        final String chatId = ChatBot.SCANNER.nextLine();
+        final int id = Integer.parseInt(chatId);
 
-        System.out.println("Enter Your question");
-        final String question = ChatBot.SCANNER.next();
+        LOGGER.info("Enter Your question");
+        final String question = ChatBot.SCANNER.nextLine();
 
-        System.out.println("Enter Your answer");
-        final String answer = ChatBot.SCANNER.next();
+        LOGGER.info("Enter Your answer");
+        final String answer = ChatBot.SCANNER.nextLine();
 
         CHATBOT_CONTROLLER.update(id, question, answer);
     }
@@ -111,9 +120,10 @@ public class Admin {
      * Get the id for delete the chat
      */
     public void deleteChat() {
-        System.out.println("Enter the Id do you want to delete");
-        final int id = ChatBot.SCANNER.nextInt();
-
+        LOGGER.info("Enter the Id do you want to delete");
+        final String chatId = ChatBot.SCANNER.nextLine();
+        final int id = Integer.parseInt(chatId);
+        
         CHATBOT_CONTROLLER.delete(id);
     }
 }

@@ -1,6 +1,12 @@
 package com.chatbot.main;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Scanner;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import com.chatbot.view.Admin;
 import com.chatbot.view.User;
@@ -11,63 +17,92 @@ import com.chatbot.view.User;
  * @author KavinilaE
  */
 public class ChatBot {
-    public final static Scanner SCANNER = new Scanner(System.in);
+
+    public static final Scanner SCANNER = new Scanner(System.in);
+    private final Logger LOGGER = Logger.getLogger(ChatBot.class);
+    private final ChatBot chatbot=new ChatBot();
+
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        final String LOG_FILE = "chatbot.properties";
+        final Properties PROPERTIES = new Properties();
+        PROPERTIES.load(new FileInputStream(LOG_FILE));
+        PropertyConfigurator.configure(PROPERTIES);
+        final ChatBot chatBot = new ChatBot();
+        chatBot.userInput();
+    }
 
     /**
-     * Get the input from user for access as admin or user
-     *
-     * @param args
+     * Get the input from user for access admin or user.
      */
-    public static void main(String[] args) {
-        System.out.println("1.Admin 2.User");
-        final int userOption = SCANNER.nextInt();
-        //String userOption = SCANNER.nextLine();
-        //int userOption1 = Integer.parseInt(userOption);
+    private void userInput() {
+        LOGGER.info("1.Admin 2.User");
 
-        if (userOption == 1) {
-            ChatBot.adminChoice();
-        } else if (userOption == 2) {
-            ChatBot.userChoice();
-        } else {
-            System.out.println("Please Enter valid one");
+        try {
+            final String userOption = SCANNER.nextLine();
+            final int userchoice = Integer.parseInt(userOption);
+
+            if (userchoice == 1) {
+                ChatBot.adminChoice();
+            } else if (userchoice == 2) {
+                ChatBot.userChoice();
+            } else {
+                LOGGER.info("Please enter the number 1 or 2");
+                userInput();
+            }
+        } catch (NumberFormatException e) {
+            LOGGER.error("Please enter the input in number (1 or 2)");
+            userInput();
         }
     }
 
     /**
      * Get input from the admin for authentication.
      */
-    public static void adminChoice() {
-        System.out.println("1.SignUp 2.Signin");
+    public void adminChoice() {
         final Admin admin = new Admin();
-        final int adminChoice = SCANNER.nextInt();
-        //final String adminChoice = ChatBot.SCANNER.nextLine();
-        // final int adminChoice1 = Integer.parseInt(adminChoice);
-        if (adminChoice == 1) {
-            admin.adminSignUp();
-        } else if (adminChoice == 2) {
-            admin.adminSignIn();
-        } else {
-            System.out.println("Please give valid one");
+        LOGGER.info("1.SignUp 2.Signin");
+
+        try {
+            final String adminOption = SCANNER.nextLine();
+            final int adminChoice = Integer.parseInt(adminOption);
+
+            if (adminChoice == 1) {
+                admin.adminSignUp();
+            } else if (adminChoice == 2) {
+                admin.adminSignIn();
+            } else {
+                LOGGER.info("Please give the number 1 or 2");
+                adminChoice();
+            }
+        } catch (NumberFormatException e) {
+            LOGGER.error("Please enter input in number(1 or 2) ");
+            adminChoice();
         }
     }
 
     /**
      * Get input from user for authentication.
-     * 
      */
-    public static void userChoice() {
-        System.out.println("1.SignUp 2.Signin");
-
+    public void userChoice() {
+        LOGGER.info("1.SignUp 2.Signin");
         final User user = new User();
-        final int userChoice = SCANNER.nextInt();
-        //final String userChoice = ChatBot.SCANNER.nextLine();
-        //final int userChoice1 = Integer.parseInt(userChoice);
-        if (userChoice == 1) {
-            user.signUp();
-        } else if (userChoice == 2) {
-            user.signIn();
-        } else {
-            System.out.println("Please give valid one");
+
+        try {
+            final String userOption = SCANNER.nextLine();
+            final int userChoice = Integer.parseInt(userOption);
+
+            if (userChoice == 1) {
+                user.signUp();
+            } else if (userChoice == 2) {
+                user.signIn();
+            } else {
+                LOGGER.info("Please give the number 1 or 2 ");
+                userChoice();
+
+            }
+        } catch (NumberFormatException e) {
+            LOGGER.error("Please give the input in number (1 or 2) ");
+            userChoice();
         }
     }
 }

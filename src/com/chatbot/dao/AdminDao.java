@@ -16,9 +16,6 @@ public class AdminDao {
     /**
      * Insert emailId,userName,password into Admin table.
      * 
-     * @param emailId
-     * @param userName
-     * @param password
      */
     public static void insertNewAdmin(final ChatBotUser chatBotUser) {
        final String adminInsertQuery = "Insert into admin(emailid,username,password) values(?,?,?)";

@@ -1,6 +1,7 @@
 package com.chatbot.model;
 
 public class ChatBotUser {
+    
     private String emailId;
     private String userName;
     private String password;
