@@ -95,10 +95,11 @@ public class ChatBotServiceImplementation implements Service {
     @Override
     /**
      * Gets the question for Chating.
+     * @return 
      * 
      * @ userQuestion
      */
     public void userQuestion(final String userQuestion) {
-        USER_DAO.doChat(userQuestion);
+         USER_DAO.doChat(userQuestion);
     }
 }
