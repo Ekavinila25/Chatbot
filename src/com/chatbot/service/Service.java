@@ -1,21 +1,21 @@
 package com.chatbot.service;
 
 public interface Service {
-    
-    boolean adminSignUp(final String emailId,final String userName,final String password);
 
-    boolean adminSignIn(final String userName,final String password);
-    
-    boolean userSignUp(final String mobilenum,final String username,final String password);
+    boolean adminSignUp(final String emailId, final String userName, final String password);
 
-    boolean userSignIn(final String userName,final String password);
+    boolean adminSignIn(final String userName, final String password);
 
-    void addChat(final String question,final String answer);
+    boolean userSignUp(final String mobilenum, final String username, final String password);
 
-    void updateChat(final int id,final String question,final String answer);
+    boolean userSignIn(final String userName, final String password);
 
-    void deleteChat(final int id);
+    boolean addChat(final String question, final String answer);
+
+    boolean updateChat(final int id, final String question, final String answer);
+
+    boolean deleteChat(final int id);
 
     void userQuestion(final String question);
-
+   
 }

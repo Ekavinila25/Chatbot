@@ -1,12 +1,12 @@
 package com.chatbot.model;
 
-public class ChatBotUser {
+public class User {
     
     private String emailId;
     private String userName;
     private String password;
 
-    public ChatBotUser(String emailId, String userName, String password) {
+    public User(String emailId, String userName, String password) {
         this.emailId = emailId;
         this.userName = userName;
         this.password = password;

@@ -4,16 +4,23 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 /**
- * Modify the chat table
+ * Modifies the chat table.
  * 
  * @author KavinilaE
  */
 public class AdminDao {
 
+    private static final Logger LOGGER = Logger.getLogger(AdminDao.class);
+
     /**
-     * Insert emailId,userName,password into Admin table.
+     * Inserts the details of new user.
      * 
+     * @param emailId
+     * @param userName
+     * @param password
      */
     public static void insertNewAdmin(final String emailId, final String userName, final String password) {
         final String adminInsertQuery = "Insert into admin(emailid,username,password) values(?,?,?)";
@@ -27,12 +34,12 @@ public class AdminDao {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Sql Error");
+            LOGGER.error("Sql Error");
         }
     }
 
     /**
-     * Add the question and answer into table.
+     * Adds the question and answer into table.
      * 
      * @param question
      * @param answer
@@ -48,20 +55,19 @@ public class AdminDao {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.out.println("Sql Error");
+            LOGGER.error("Sql Error");
         }
         return false;
     }
 
     /**
-     * Update the chat.
+     * Updates the chat.
      * 
      * @param id
      * @param question
      * @param answer
      */
     public boolean updateChat(final int id, final String question, final String answer) {
-
         final String chatbotUpdateQuery = "update chatbot set question = ?,answer = ? where id = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
@@ -74,13 +80,13 @@ public class AdminDao {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.out.println("Sql Error");
+            LOGGER.error("Sql Error");
         }
         return false;
     }
 
     /**
-     * Delete the chat.
+     * Deletes the chat.
      * 
      * @param id
      */
@@ -95,7 +101,7 @@ public class AdminDao {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.out.println("Sql Error");
+            LOGGER.error("Sql Error");
         }
         return false;
     }

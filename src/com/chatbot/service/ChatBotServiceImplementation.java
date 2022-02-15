@@ -2,10 +2,9 @@ package com.chatbot.service;
 
 import com.chatbot.dao.AdminDao;
 import com.chatbot.dao.UserDao;
-import com.chatbot.view.Admin;
 
 /**
- * Get the input and pass for validation
+ * Gets the input and pass for validation.
  * 
  * @author KavinilaE
  */
@@ -13,83 +12,91 @@ public class ChatBotServiceImplementation implements Service {
 
     private final static AdminDao ADMIN_DAO = new AdminDao();
     private final static UserDao USER_DAO = new UserDao();
-    private final static Admin ADMIN = new Admin();
-
+    
+    @Override
     /**
-     * Get emailId,userName,password and pass into validation for adminSignup
+     * Gets emailId,userName,password and pass into validation for adminSignup.
      * 
-     * @author KavinilaE
+     * @param emaiId
+     * @param userName
+     * @param password
      */
     public boolean adminSignUp(final String emailId, final String userName, final String password) {
-        return ChatService.adminSignUp(emailId, userName, password);
+        return ChatBotValidator.adminSignUp(emailId, userName, password);
     }
-
+    
+    @Override
     /**
-     * Get the userName,password and pass into validation for adminSignIn
+     * Gets the userName,password and pass into validation for adminSignIn.
      * 
-     * @author KavinilaE
+     * @param userName
+     * @param password
      */
     public boolean adminSignIn(final String userName, final String password) {
-        return ChatService.adminSignIn(userName, password);
+        return ChatBotValidator.adminSignIn(userName, password);
     }
-
+    
+    @Override
     /**
-     * Get the input and pass into validation for userSignup
+     * Gets the input and pass into validation for userSignup.
      * 
-     * @author KavinilaE
+     * @param mobileNumber
+     * @param userName
+     * @param password
      */
     public boolean userSignUp(final String mobileNumber, final String userName, final String password) {
-        return ChatService.userSignUp(mobileNumber, userName, password);
+        return ChatBotValidator.userSignUp(mobileNumber, userName, password);
     }
-
+    
+    @Override
     /**
-     * Get the input and pass into validation for userSignin
+     * Gets the input and pass into validation for userSignin.
      * 
-     * @author KavinilaE
-     * @return
+     * @param userName
+     * @param password
      */
     public boolean userSignIn(final String userName, final String password) {
-        return ChatService.userSignIn(userName, password);
+        return ChatBotValidator.userSignIn(userName, password);
     }
-
+    
+    @Override
     /**
-     * Get question, answer and pass into addChat.
+     * Gets question, answer and pass into addChat.
+     * 
+     * @param question
+     * @param answer
      */
-    public void addChat(final String question, final String answer) {
-        boolean addChatReturnType = ADMIN_DAO.addChat(question, answer);
-
-        if (addChatReturnType) {
-            System.out.println("Added Successfully");
-            ADMIN.adminChoice();
-        }
+    public boolean addChat(final String question, final String answer) {
+        return ADMIN_DAO.addChat(question, answer);
     }
-
+    
+    @Override
     /**
-     * Get id, question, answer and pass into updateChat.
+     * Gets id, question, answer and pass into updateChat.
+     * 
+     * @param id
+     * @param question
+     * @param answer
      */
-    public void updateChat(final int id, final String question, final String answer) {
-        boolean updateChatReturnType = ADMIN_DAO.updateChat(id, question, answer);
-
-        if (updateChatReturnType) {
-            System.out.println("Updated Successfully");
-            ADMIN.adminChoice();
-        }
+    public boolean updateChat(final int id, final String question, final String answer) {
+        return ADMIN_DAO.updateChat(id, question, answer);
     }
-
+    
+    @Override
     /**
-     * Get the id and pass for delete
+     * Gets the id and pass for delete
+     * 
+     * @param id
      */
-    public void deleteChat(final int id) {
-        boolean deleteChatReturnType = ADMIN_DAO.deleteChat(id);
-
-        if (deleteChatReturnType) {
-            System.out.println("Deleted Successfully");
-            ADMIN.adminChoice();
-        }
+    public boolean deleteChat(final int id) {
+        return ADMIN_DAO.deleteChat(id);
     }
-
+    
+    @Override
     /**
-     * Get the question for Chating
+     * Gets the question for Chating.
+     * 
+     * @ userQuestion
      */
     public void userQuestion(final String userQuestion) {
         USER_DAO.doChat(userQuestion);

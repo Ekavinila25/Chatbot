@@ -5,15 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
+import com.chatbot.main.ChatBot;
+
 /**
- * Insert the new user details to user table and doChat
+ * Inserts the new user details to user table and doChat.
  * 
  * @author KavinilaE
  */
 public class UserDao {
 
+    private static final Logger LOGGER = Logger.getLogger(ChatBot.class);
+
     /**
-     * Insert new user details into database
+     * Inserts new user details into database.
      * 
      * @param mobileNumber
      * @param userName
@@ -30,14 +36,14 @@ public class UserDao {
 
             preparedStatement.executeUpdate();
         } catch (Exception e) {
-            System.out.println("Sql Error");
+            LOGGER.error("Sql Error");
         }
     }
 
     /**
-     * Get the result from chatTable.
+     * Gets the result from chatTable.
      * 
-     * @author KavinilaE
+     * @param userQuestion
      */
     public void doChat(final String userQuestion) {
         final String chatResult = "select question, answer from chatbot";
@@ -56,7 +62,7 @@ public class UserDao {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error");
+            LOGGER.error("Sql Error");
         }
     }
 }

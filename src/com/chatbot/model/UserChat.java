@@ -10,9 +10,6 @@ public class UserChat {
         this.answer = answer;
     }
 
-    public UserChat() {
-    }
-
     public String getQuestion() {
         return question;
     }

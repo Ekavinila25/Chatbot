@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Get connection
+ * Gets connection.
  * 
  * @author KavinilaE
  */
@@ -16,7 +16,7 @@ public class DatabaseConnection {
 	private static final String DATABASE_PASSWORD = "Kavi@967761";
 	private static Connection connection;
 
-	public final static Connection getConnection() {
+	static final Connection getConnection() {
 
 		try {
 			connection = DriverManager.getConnection(JDBC_URL, DATABASE_NAME, DATABASE_PASSWORD);
