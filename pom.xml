@@ -11,6 +11,8 @@
         <module>service</module>
         <module>controller</module>
         <module>dao</module>
-        <module>Feature</module>
+        <module>Features</module>
+
+
     </modules>
 </project>

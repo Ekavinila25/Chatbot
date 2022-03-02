@@ -16,15 +16,11 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<features name="Feature-0.0.1-SNAPSHOT" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+<features name="Features-0.0.1-SNAPSHOT" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
 
-    <feature name='Feature' description='Feature-feature' version='0.0.1-SNAPSHOT'>
-        <details>Feature details</details>
-        <bundle>mvn:com.launchclub/dao/0.0.1-SNAPSHOT </bundle>
-        <bundle>mvn:com.launchclub/controller/0.0.1-SNAPSHOT </bundle>
-        <bundle>mvn:com.launchclub/view/0.0.1-SNAPSHOT </bundle>
-        <bundle>mvn:com.launchclub/service/0.0.1-SNAPSHOT </bundle>
-        <bundle>wrap:mvn:mysql/mysql-connector-java/8.0.28</bundle>
+    <feature name='Features' description='Features-feature' version='0.0.1-SNAPSHOT'>
+        <details>Features details</details>
+        <!-- <config>foo=bar</config> -->
     </feature>
 
 </features>
