@@ -1,7 +1,10 @@
 package org.example;
 
 import java.util.Scanner;
+import org.example.controlller.UserController;
 import org.example.controller.ChatbotController;
+import org.osgi.service.component.annotations.Reference;
+
 /**
  * Gets the input from the user.
  *
@@ -11,6 +14,9 @@ public class UserPage {
 
     private final ChatbotController CHATBOT_CONTROLLER = new ChatbotController();
     private static final UserPage USER_PAGE = new UserPage();
+    private static final UserController USER_CONTROLLER = new UserController();
+    @Reference
+    ChatValidation chatValidation;
 
     /**
      * Gets input from user for authentication.
@@ -66,7 +72,7 @@ public class UserPage {
     private String getMobileNumber() {
         final String mobileNumber = ChatBot.SCANNER.next().trim();
 
-        if (!chatvalidation.mobileNumberValidate(mobileNumber)) {
+        if (!chatValidation.mobileNumberValidate(mobileNumber)) {
             System.out.println("Please enter valid mobilenumber");
             return getMobileNumber();
         }
@@ -80,7 +86,7 @@ public class UserPage {
     private String getUserName() {
         final String userName = ChatBot.SCANNER.next().trim();
 
-        if (!chatvalidation.userNameValidate(userName)) {
+        if (!chatValidation.userNameValidate(userName)) {
             System.out.println("Please enter username");
             return getUserName();
         }
@@ -95,7 +101,7 @@ public class UserPage {
     private String getPassword() {
         final String password = ChatBot.SCANNER.next().trim();
 
-        if (!chatvalidation.passwordValidate(password)) {
+        if (!chatValidation.passwordValidate(password)) {
             System.out.println("Please enter valid password");
             return getPassword();
         }
@@ -128,7 +134,7 @@ public class UserPage {
 
         while (true) {
             final String userQuestion = ChatBot.SCANNER.next().trim();
-            CHATBOT_CONTROLLER.userChat(userQuestion);
+            USER_CONTROLLER.userChat(userQuestion);
         }
     }
 }

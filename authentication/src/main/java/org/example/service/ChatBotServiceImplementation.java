@@ -1,21 +1,19 @@
 package org.example.service;
 
-import org.example.UserChat;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Gets the input and pass for validation.
  *
  * @author KavinilaE
  */
+@Component
 public class ChatBotServiceImplementation implements Service {
 
-    private final static UserChat USER_CHAT = new UserChat();
-
-    @Override
     /**
      * Gets emailId,userName,password and pass into validation for adminSignup.
      *
-     * @param emaiId
+     * @param emailId
      * @param userName
      * @param password
      */
@@ -23,7 +21,6 @@ public class ChatBotServiceImplementation implements Service {
         return ChatBotValidator.adminSignUp(emailId, userName, password);
     }
 
-    @Override
     /**
      * Gets the userName,password and pass into validation for adminSignIn.
      *
@@ -34,7 +31,6 @@ public class ChatBotServiceImplementation implements Service {
         return ChatBotValidator.adminSignIn(userName, password);
     }
 
-    @Override
     /**
      * Gets the input and pass into validation for userSignup.
      *
@@ -46,7 +42,6 @@ public class ChatBotServiceImplementation implements Service {
         return ChatBotValidator.userSignUp(mobileNumber, userName, password);
     }
 
-    @Override
     /**
      * Gets the input and pass into validation for userSignin.
      *
@@ -56,14 +51,5 @@ public class ChatBotServiceImplementation implements Service {
     public boolean userSignIn(final String userName, final String password) {
         return ChatBotValidator.userSignIn(userName, password);
     }
-
-    @Override
-    /**
-     * Gets the question for Chating.
-     *
-     * @ userQuestion
-     */
-    public void userQuestion(final String userQuestion) {
-        USER_CHAT.doChat(userQuestion);
-    }
 }
+

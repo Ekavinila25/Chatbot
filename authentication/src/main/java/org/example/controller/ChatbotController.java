@@ -1,33 +1,31 @@
 package org.example.controller;
 
-import org.example.service.Service;
 import org.example.service.ChatBotServiceImplementation;
+import org.osgi.service.component.annotations.Reference;
 
 /**
- *  Get and Pass the emailid,username,password into corresponding implementation.
+ * Get and Pass the emailid,username,password into corresponding implementation.
  */
 public class ChatbotController {
 
-    private static final Service SERVICE_IMPLEMENTATION = new ChatBotServiceImplementation();
+    @Reference
+    ChatBotServiceImplementation serviceImplementation;
 
     public boolean adminSignUp(final String emailId, final String userName, final String password) {
-        return SERVICE_IMPLEMENTATION.adminSignUp(emailId, userName, password);
+        return serviceImplementation.adminSignUp(emailId, userName, password);
     }
 
     public boolean adminSignIn(final String userName, final String password) {
-        return SERVICE_IMPLEMENTATION.adminSignIn(userName, password);
+        return serviceImplementation.adminSignIn(userName, password);
     }
 
     public boolean userSignUp(final String mobileNumber, final String userName, final String password) {
-        return SERVICE_IMPLEMENTATION.userSignUp(mobileNumber, userName, password);
+        return serviceImplementation.userSignUp(mobileNumber, userName, password);
     }
 
     public boolean userSignIn(final String userName, final String password) {
-        return SERVICE_IMPLEMENTATION.userSignIn(userName, password);
-    }
-
-    public void userChat(final String userQuestion) {
-        SERVICE_IMPLEMENTATION.userQuestion(userQuestion);
+        return serviceImplementation.userSignIn(userName, password);
     }
 }
+
 

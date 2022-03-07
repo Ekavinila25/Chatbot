@@ -1,14 +1,14 @@
 package org.example.dao;
 
+import org.example.CustomException;
+import org.example.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.example.CustomException;
-import org.example.DatabaseConnection;
 
 /**
  * Stores the database result.

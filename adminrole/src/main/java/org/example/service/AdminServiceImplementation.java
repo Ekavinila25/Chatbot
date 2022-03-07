@@ -1,12 +1,14 @@
 package org.example.service;
 
 import org.example.dao.AdminCrud;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Gets the input and pass for validation.
  *
  * @author KavinilaE
  */
+@Component
 public class AdminServiceImplementation implements Service {
 
     private final static AdminCrud ADMIN_CRUD = new AdminCrud();

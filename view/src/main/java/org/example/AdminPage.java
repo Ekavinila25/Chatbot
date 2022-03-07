@@ -1,6 +1,9 @@
 package org.example;
+
 import org.example.controller.AdminController;
 import org.example.controller.ChatbotController;
+import org.osgi.service.component.annotations.Reference;
+
 /**
  * Gets the input from the admin and pass into controller.
  *
@@ -8,8 +11,10 @@ import org.example.controller.ChatbotController;
  */
 public class AdminPage {
 
-    private final static AdminController ADMIN_CONTROLLER = new AdminController();
-    private final static ChatbotController CHATBOT_CONTROLLER = new ChatbotController();
+    private static final AdminController ADMIN_CONTROLLER = new AdminController();
+    private static final ChatbotController CHATBOT_CONTROLLER = new ChatbotController();
+    @Reference
+    static ChatValidation chatValidation;
 
     /**
      * Gets input from the admin for authentication.
@@ -86,7 +91,7 @@ public class AdminPage {
     private static String getMailId() {
         final String emailId = ChatBot.SCANNER.next().trim();
 
-        if (!chatvalidation.emailIdValidate(emailId)) {
+        if (!chatValidation.emailIdValidate(emailId)) {
             System.out.println("Please enter valid emailId");
             return getMailId();
         }
@@ -99,7 +104,7 @@ public class AdminPage {
     private static String getUserName() {
         final String userName = ChatBot.SCANNER.next().trim();
 
-        if (!chatvalidation.userNameValidate(userName)) {
+        if (!chatValidation.userNameValidate(userName)) {
             System.out.println("Please enter valid username");
             return getUserName();
         }
@@ -112,7 +117,7 @@ public class AdminPage {
     private static String getPassword() {
         final String password = ChatBot.SCANNER.next().trim();
 
-        if (!chatvalidation.passwordValidate(password)) {
+        if (!chatValidation.passwordValidate(password)) {
             System.out.println("Please enter valid password");
             return getPassword();
         }

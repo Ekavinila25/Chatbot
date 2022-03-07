@@ -1,9 +1,9 @@
 package org.example.dao;
 
+import org.example.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
-import org.example.DatabaseConnection;
 
 /**
  * Inserts the new user details to user table.

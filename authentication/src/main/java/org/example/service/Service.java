@@ -14,7 +14,4 @@ public interface Service {
     boolean userSignUp(final String mobilenum, final String username, final String password);
 
     boolean userSignIn(final String userName, final String password);
-
-    void userQuestion(final String userQuestion);
-
 }

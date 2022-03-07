@@ -1,11 +1,11 @@
 package org.example.dao;
 
+import org.example.CustomException.AccessFailedException;
+import org.example.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import org.example.CustomException.AccessFailedException;
-import org.example.DatabaseConnection;
 
 /**
  * Admin  able to add,update,delete the chat.
@@ -13,7 +13,8 @@ import org.example.DatabaseConnection;
 public class AdminCrud {
 
     /**
-     * Adds the chat.
+     * Adds the chat
+     *
      * @param question
      * @param answer
      * @return

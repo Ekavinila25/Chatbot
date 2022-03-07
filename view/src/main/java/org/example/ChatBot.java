@@ -22,7 +22,7 @@ public class ChatBot {
             } else if (userchoice == 2) {
                 UserPage.userAuthentication();
             } else if (userchoice == 3) {
-                SCANNER.close();
+
                 try {
                     Activator.bundle.stop();
                 } catch (Exception e) {
