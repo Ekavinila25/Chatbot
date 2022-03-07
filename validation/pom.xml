@@ -6,12 +6,15 @@
         <groupId>org.example</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>view</artifactId>
+
+    <artifactId>validation</artifactId>
     <packaging>bundle</packaging>
-    <name>view Bundle</name>
+
+    <name>validation Bundle</name>
     <description>
-        view OSGi bundle project.
+        validation OSGi bundle project.
     </description>
 
     <properties>
@@ -25,16 +28,6 @@
             <artifactId>osgi.core</artifactId>
             <version>${osgi.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>authentication</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>validation</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -71,5 +64,4 @@
 
         </plugins>
     </build>
-
 </project>

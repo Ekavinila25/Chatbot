@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1646554338981
+Build-Jdk-Spec: 17
+Bundle-Activator: org.example.Activator
+Bundle-Description: dao OSGi bundle project.
+Bundle-ManifestVersion: 2
+Bundle-Name: dao Bundle
+Bundle-SymbolicName: dao
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin 5.1.4
+Export-Package: org.example;version="1.0.0.SNAPSHOT";uses:="org.osgi.fra
+ mework"
+Import-Package: com.mysql.cj.jdbc;version="[8.0,9)",org.osgi.framework;v
+ ersion="[1.9,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-5.1.1.202006162103

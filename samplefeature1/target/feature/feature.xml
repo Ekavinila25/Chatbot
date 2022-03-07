@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.6.0" name="samplefeature1-1.0-SNAPSHOT">
+    <feature name="samplefeature1" description="samplefeature1-feature" version="1.0.0.SNAPSHOT">
+        <details>samplefeature1 details</details>
+        <bundle start-level="50">mvn:org.example/view/1.0-SNAPSHOT</bundle>
+        <bundle start-level="50" dependency="true">mvn:org.example/authentication/1.0-SNAPSHOT</bundle>
+        <bundle start-level="50" dependency="true">mvn:org.example/dao/1.0-SNAPSHOT</bundle>
+        <bundle start-level="50" dependency="true">mvn:mysql/mysql-connector-java/8.0.28</bundle>
+        <bundle start-level="50" dependency="true">mvn:com.google.protobuf/protobuf-java/3.11.4</bundle>
+        <bundle start-level="50" dependency="true">mvn:org.example/exception/1.0-SNAPSHOT</bundle>
+        <bundle start-level="50" dependency="true">mvn:org.example/adminrole/1.0-SNAPSHOT</bundle>
+        <bundle start-level="50" dependency="true">mvn:org.example/usersrole/1.0-SNAPSHOT</bundle>
+        <bundle start-level="50" dependency="true">mvn:org.example/validation/1.0-SNAPSHOT</bundle>
+    </feature>
+</features>

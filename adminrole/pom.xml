@@ -6,12 +6,15 @@
         <groupId>org.example</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>view</artifactId>
+
+    <artifactId>adminrole</artifactId>
     <packaging>bundle</packaging>
-    <name>view Bundle</name>
+
+    <name>adminrole Bundle</name>
     <description>
-        view OSGi bundle project.
+        adminrole OSGi bundle project.
     </description>
 
     <properties>
@@ -28,12 +31,12 @@
         </dependency>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>authentication</artifactId>
+            <artifactId>dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>validation</artifactId>
+            <artifactId>authentication</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
@@ -71,5 +74,4 @@
 
         </plugins>
     </build>
-
 </project>
