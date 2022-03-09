@@ -1,9 +1,0 @@
-org\example\Activator.class
-org\example\model\User.class
-org\example\dao\UserDao.class
-org\example\controller\ChatbotController.class
-org\example\dao\DatabaseResult.class
-org\example\service\ChatBotServiceImplementation.class
-org\example\service\ChatBotValidator.class
-org\example\service\Service.class
-org\example\dao\AdminDao.class
