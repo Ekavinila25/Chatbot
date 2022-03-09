@@ -1,7 +1,0 @@
-org\example\Activator.class
-org\example\CustomException$ConnectionException.class
-org\example\CustomException$NumberFormatException.class
-org\example\CustomException$PasswordNotFoundException.class
-org\example\CustomException$MailIdNotFoundException.class
-org\example\CustomException$AccessFailedException.class
-org\example\CustomException.class
