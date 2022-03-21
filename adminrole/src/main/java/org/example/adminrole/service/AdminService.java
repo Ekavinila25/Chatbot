@@ -1,0 +1,16 @@
+package org.example.adminrole.service;
+
+import org.example.adminrole.model.Conversation;
+
+import java.util.List;
+
+public interface AdminService {
+
+    boolean addChat(final String question, final String answer);
+
+    boolean updateChat(final int id, final String question, final String answer);
+
+    boolean deleteChat(final int id);
+
+    List<Conversation> viewChat();
+}

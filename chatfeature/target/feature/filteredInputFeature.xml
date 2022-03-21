@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<features name="chatfeature-1.0-SNAPSHOT" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+    <feature name='chatfeature' description='chatfeature-feature' version='1.0-SNAPSHOT'>
+        <details>chatfeature details</details>
+        <feature  dependency="true">scr</feature>
+    <feature dependency="true">jaxrs</feature>
+    </feature>
+
+</features>
