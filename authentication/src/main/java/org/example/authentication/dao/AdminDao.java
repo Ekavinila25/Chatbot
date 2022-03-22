@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import org.example.database_connection.DatabaseConnection;
 import org.example.database_connection.exception.ConnectionException;
 
+import static com.fasterxml.jackson.databind.type.LogicalType.Map;
+
 /**
  * Modifies the chat table.
  *

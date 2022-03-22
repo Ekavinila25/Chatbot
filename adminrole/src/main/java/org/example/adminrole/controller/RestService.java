@@ -4,11 +4,14 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.apache.cxf.BusFactory;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+import org.example.database_connection.DatabaseConnection;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
-@Component(immediate = true)
+import java.util.Map;
+
+@Component(immediate = true,name="database")
 public class RestService {
 
     private Server server;
@@ -17,9 +20,10 @@ public class RestService {
      * Used to activate.
      */
     @Activate
-    public void activate() {
-
+    public void activate(Map<String,String> properties) {
+        DatabaseConnection.databaseConnection(properties);
         try {
+
             JAXRSServerFactoryBean bean = new JAXRSServerFactoryBean();
             bean.setAddress("/chat");
             bean.setBus(BusFactory.getDefaultBus());
