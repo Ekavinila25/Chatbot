@@ -67,9 +67,6 @@ public class AdminServiceImplementation implements AdminService {
      * Used for viewChat.
      */
     public List<Conversation> viewChat() {
-
         return new ArrayList<Conversation>(ADMIN_ROLE.viewChat());
-
-
     }
 }
