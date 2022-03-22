@@ -21,9 +21,9 @@ public class RestService {
      */
     @Activate
     public void activate(Map<String,String> properties) {
-        DatabaseConnection.databaseConnection(properties);
+      
         try {
-
+            DatabaseConnection.databaseConnection(properties);
             JAXRSServerFactoryBean bean = new JAXRSServerFactoryBean();
             bean.setAddress("/chat");
             bean.setBus(BusFactory.getDefaultBus());
