@@ -6,7 +6,6 @@ public class Conversation {
     private String question;
     private String answer;
     public Conversation() {
-
     }
 
     public int getId() {
