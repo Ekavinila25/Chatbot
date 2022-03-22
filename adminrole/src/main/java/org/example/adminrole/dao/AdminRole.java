@@ -21,7 +21,6 @@ public class AdminRole {
      *
      * @param question
      * @param answer
-     * @return
      */
     public static boolean addChat(final String question, final String answer) {
         final String chatbotInsertQuery = "Insert into chatbot(question,answer) values(?,?)";
@@ -81,7 +80,6 @@ public class AdminRole {
 
     /**
      * view the chat.
-     * @return
      */
     public List<Conversation> viewChat() {
         final List<Conversation> userChatList = new ArrayList<Conversation>();
